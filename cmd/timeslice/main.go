@@ -22,7 +22,7 @@ func main() {
 	db := initDB()
 	r := gin.Default()
 
-	task.RegisterHandlers(r.Group("/tasks"), task.Service{Repo: task.Repository{DB: db}})
+	task.RegisterHandlers(r.Group("/tasks"), task.NewService(db))
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
